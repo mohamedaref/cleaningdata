@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Data Science - Cleaning Data Code Book</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h2>Data Science - Cleaning Data Code Book</h2>
+
+<h3>Domain definition</h3>
+
+<p>All values within domain are averages of the features found within the <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">Human Activity Recognition Using Smartphones Data Set</a>. Column names are <code>&lt;signal&gt;__&lt;variable&gt;_&lt;variable_param&gt;</code></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Subject ID</td>
+<td>subject_id</td>
+<td>Identifier for subject</td>
+</tr>
+<tr>
+<td>Activity Label</td>
+<td>activity_label</td>
+<td>Label of [WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING] representing activity</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Mean X</td>
+<td>tBodyAcc__mean_X</td>
+<td>Average mean Body Acceleration along time X-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Mean Y</td>
+<td>tBodyAcc__mean_Y</td>
+<td>Average mean Body Acceleration along time Y-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Mean Z</td>
+<td>tBodyAcc__mean_Z</td>
+<td>Average mean Body Acceleration along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Standard Deviation X</td>
+<td>tBodyAcc__std_Z</td>
+<td>Average stanard deviation of Body Acceleration along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Standard Deviation Y</td>
+<td>tBodyAcc__std_Z</td>
+<td>Average stanard deviation of Body Acceleration along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Standard Deviation Z</td>
+<td>tBodyAcc__std_Z</td>
+<td>Average stanard deviation of Body Acceleration along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Gravity Acceleration Mean X</td>
+<td>tGravityAcc__mean_X</td>
+<td>Average mean Gravity Acceleration along time X-axis</td>
+</tr>
+<tr>
+<td>(Time) Gravity Acceleration Mean Y</td>
+<td>tGravityAcc__mean_Y</td>
+<td>Average mean Gravity Acceleration along time Y-axis</td>
+</tr>
+<tr>
+<td>(Time) Gravity Acceleration Mean Z</td>
+<td>tGravityAcc__mean_Z</td>
+<td>Average mean Gravity Acceleration along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Gravity Acceleration Standard Deviation X</td>
+<td>tGravityAcc__std_X</td>
+<td>Average stanard deviation of Gravity Acceleration along time X-axis</td>
+</tr>
+<tr>
+<td>(Time) Gravity Acceleration Standard Deviation Y</td>
+<td>tGravityAcc__std_Y</td>
+<td>Average stanard deviation of Gravity Acceleration along time Y-axis</td>
+</tr>
+<tr>
+<td>(Time) Gravity Acceleration Standard Deviation Z</td>
+<td>tGravityAcc__std_Z</td>
+<td>Average stanard deviation of Gravity Acceleration along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Jerk Mean X</td>
+<td>tBodyAccJerk__mean_X</td>
+<td>Average mean Body Acceleration Jerk along time X-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Jerk Mean Y</td>
+<td>tBodyAccJerk__mean_Y</td>
+<td>Average mean Body Acceleration Jerk along time Y-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Jerk Mean Z</td>
+<td>tBodyAccJerk__mean_Z</td>
+<td>Average mean Body Acceleration Jerk along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Jerk Standard Deviation X</td>
+<td>tBodyAccJerk__std_X</td>
+<td>Average standard deviation Body Acceleration Jerk along time X-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Jerk Standard Deviation Y</td>
+<td>tBodyAccJerk__std_Y</td>
+<td>Average standard deviation Body Acceleration Jerk along time Y-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Jerk Standard Deviation Z</td>
+<td>tBodyAccJerk__std_Z</td>
+<td>Average standard deviation Body Acceleration Jerk along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Mean X</td>
+<td>tBodyGyro__mean_X</td>
+<td>Average mean Body Gyroscope along time X-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Mean Y</td>
+<td>tBodyGyro__mean_Y</td>
+<td>Average mean Body Gyroscope along time Y-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Mean Z</td>
+<td>tBodyGyro__mean_Z</td>
+<td>Average mean Body Gyroscope along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Standard Deviation X</td>
+<td>tBodyGyro__std_X</td>
+<td>Average standard deviation Body Gyroscope along time X-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Standard Deviation Y</td>
+<td>tBodyGyro__std_Y</td>
+<td>Average standard deviation Body Gyroscope along time Y-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Standard Deviation Z</td>
+<td>tBodyGyro__std_Z</td>
+<td>Average standard deviation Body Gyroscope along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Jerk Mean X</td>
+<td>tBodyGyroJerk__mean_X</td>
+<td>Average mean Body Gyroscope Jerk along time X-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Jerk Mean Y</td>
+<td>tBodyGyroJerk__mean_Y</td>
+<td>Average mean Body Gyroscope Jerk along time Y-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Jerk Mean Z</td>
+<td>tBodyGyroJerk__mean_Z</td>
+<td>Average mean Body Gyroscope Jerk along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Jerk Standard Deviation X</td>
+<td>tBodyGyroJerk__std_X</td>
+<td>Average standard deviation Body Gyroscope Jerk along time X-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Jerk Standard Deviation Y</td>
+<td>tBodyGyroJerk__std_Y</td>
+<td>Average standard deviation Body Gyroscope Jerk along time Y-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Jerk Standard Deviation Z</td>
+<td>tBodyGyroJerk__std_Z</td>
+<td>Average standard deviation Body Gyroscope Jerk along time Z-axis</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Magnitude Mean</td>
+<td>tBodyAccMag__mean</td>
+<td>Average mean Body Acceleration Magnitude along time</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Magnitude Standard Deviation</td>
+<td>tBodyAccMag__std</td>
+<td>Average standard deviation Body Acceleration Magnitude along time</td>
+</tr>
+<tr>
+<td>(Time) Gravity Acceleration Magnitude Mean</td>
+<td>tGravityAccMag__mean</td>
+<td>Average mean Gravity Acceleration Magnitude along time</td>
+</tr>
+<tr>
+<td>(Time) Gravity Acceleration Magnitude Standard Deviation</td>
+<td>tGravityAccMag__std</td>
+<td>Average standard deviation Gravity Acceleration Magnitude along time</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Jerk Magnitude Mean</td>
+<td>tBodyAccJerkMag__mean</td>
+<td>Average mean Body Acceleration Jerk Magnitude along time</td>
+</tr>
+<tr>
+<td>(Time) Body Acceleration Jerk Magnitude Standard Deviation</td>
+<td>tBodyAccJerkMag__std</td>
+<td>Average standard deviation Body Acceleration Jerk Magnitude along time</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Magnitude Mean</td>
+<td>tBodyGyroMag__mean</td>
+<td>Average mean Body Gyroscope Magnitude along time</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Magnitude Standard Deviation</td>
+<td>tBodyGyroMag__std</td>
+<td>Average standard deviation Body Gyroscope Magnitude along time</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Jerk Magnitude Mean</td>
+<td>tBodyGyroJerkMag__mean</td>
+<td>Average mean Body Gyroscope Jerk Magnitude along time</td>
+</tr>
+<tr>
+<td>(Time) Body Gyroscope Jerk Magnitude Standard Deviation</td>
+<td>tBodyGyroJerkMag__std</td>
+<td>Average standard deviation Body Gyroscope Jerk Magnitude along time</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Mean X</td>
+<td>fBodyAcc__mean_X</td>
+<td>Average mean Body Acceleration along frequency X-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Mean Y</td>
+<td>fBodyAcc__mean_Y</td>
+<td>Average mean Body Acceleration along frequency Y-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Mean Z</td>
+<td>fBodyAcc__mean_Z</td>
+<td>Average mean Body Acceleration along frequency Z-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Standard Deviation X</td>
+<td>fBodyAcc__std_X</td>
+<td>Average stanard deviation of Body Acceleration along frequency X-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Standard Deviation Y</td>
+<td>fBodyAcc__std_Y</td>
+<td>Average stanard deviation of Body Acceleration along frequency Y-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Standard Deviation Z</td>
+<td>fBodyAcc__std_Z</td>
+<td>Average stanard deviation of Body Acceleration along frequency Z-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Mean Frequency X</td>
+<td>fBodyAcc__meanFreq_X</td>
+<td>Average mean frequency of Body Acceleration along frequency X-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Mean Frequency Y</td>
+<td>fBodyAcc__meanFreq_Y</td>
+<td>Average mean frequency of Body Acceleration along frequency Y-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Mean Frequency Z</td>
+<td>fBodyAcc__meanFreq_Z</td>
+<td>Average mean frequency of Body Acceleration along frequency Z-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Mean X</td>
+<td>fBodyAccJerk__mean_X</td>
+<td>Average mean Body Acceleration Jerk along frequency X-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Mean Y</td>
+<td>fBodyAccJerk__mean_Y</td>
+<td>Average mean Body Acceleration Jerk along frequency Y-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Mean Z</td>
+<td>fBodyAccJerk__mean_Z</td>
+<td>Average mean Body Acceleration Jerk along frequency Z-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Standard Deviation X</td>
+<td>fBodyAccJerk__std_X</td>
+<td>Average stanard deviation of Body Acceleration Jerk along frequency X-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Standard Deviation Y</td>
+<td>fBodyAccJerk__std_Y</td>
+<td>Average stanard deviation of Body Acceleration Jerk along frequency Y-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Standard Deviation Z</td>
+<td>fBodyAccJerk__std_Z</td>
+<td>Average stanard deviation of Body Acceleration Jerk along frequency Z-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Mean Frequency X</td>
+<td>fBodyAccJerk__meanFreq_X</td>
+<td>Average mean frequency of Body Acceleration Jerk along frequency X-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Mean Frequency Y</td>
+<td>fBodyAccJerk__meanFreq_Y</td>
+<td>Average mean frequency of Body Acceleration Jerk along frequency Y-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Mean Frequency Z</td>
+<td>fBodyAccJerk__meanFreq_Z</td>
+<td>Average mean frequency of Body Acceleration Jerk along frequency Z-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Gyroscope Mean X</td>
+<td>fBodyGyro__mean_X</td>
+<td>Average mean Body Gyroscope along frequency X-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Gyroscope Mean Y</td>
+<td>fBodyGyro__mean_Y</td>
+<td>Average mean Body Gyroscope along frequency Y-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Gyroscope Mean Z</td>
+<td>fBodyGyro__mean_Z</td>
+<td>Average mean Body Gyroscope along frequency Z-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Gyroscope Standard Deviation X</td>
+<td>fBodyGyro__std_X</td>
+<td>Average standard deviation Body Gyroscope along frequency X-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Gyroscope Standard Deviation Y</td>
+<td>fBodyGyro__std_Y</td>
+<td>Average standard deviation Body Gyroscope along frequency Y-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Gyroscope Standard Deviation Z</td>
+<td>fBodyGyro__std_Z</td>
+<td>Average standard deviation Body Gyroscope along frequency Z-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Gyroscope Mean Frequency X</td>
+<td>fBodyGyro__meanFreq_X</td>
+<td>Average mean frequency of Body Gyroscope along frequency X-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Gyroscope Mean Frequency Y</td>
+<td>fBodyGyro__meanFreq_Y</td>
+<td>Average mean frequency of Body Gyroscope along frequency Y-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Gyroscope Mean Frequency Z</td>
+<td>fBodyGyro__meanFreq_Z</td>
+<td>Average mean frequency of Body Gyroscope along frequency Z-axis</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Magnitude Mean</td>
+<td>fBodyAccMag__mean</td>
+<td>Average mean of Body Acceleration Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Magnitude Standard Deviation</td>
+<td>fBodyAccMag__std</td>
+<td>Average standard deviation of Body Acceleration Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Magnitude Mean Frequency</td>
+<td>fBodyAccMag__meanFreq</td>
+<td>Average mean frequency of Body Acceleration Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Magnitude Mean</td>
+<td>fBodyAccJerkMag__mean</td>
+<td>Average mean Body Acceleration Jerk Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Magnitude Standard Deviation</td>
+<td>fBodyAccJerkMag__std</td>
+<td>Average standard deviation Body Acceleration Jerk Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Acceleration Jerk Magnitude Mean Frequency</td>
+<td>fBodyAccJerkMag__meanFreq</td>
+<td>Average mean frequency of Body Acceleration Jerk Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Body Acceleration Jerk Magnitude Mean Frequency</td>
+<td>fBodyBodyAccJerkMag__meanFreq</td>
+<td>Average mean frequency of Body Body Acceleration Jerk Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Body Gyroscope Magnitude Mean</td>
+<td>fBodyBodyGyroMag__mean</td>
+<td>Average mean Body Gyroscope Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Body Gyroscope Magnitude Standard Deviation</td>
+<td>fBodyBodyGyroMag__std</td>
+<td>Average standard deviation Body Body Gyroscope Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Body Gyroscope Magnitude Mean Frequency</td>
+<td>fBodyBodyGyroMag__meanFreq</td>
+<td>Average mean frequency of Body Body Gyroscope Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Body Gyroscope Jerk Magnitude Mean</td>
+<td>fBodyBodyGyroJerkMag__mean</td>
+<td>Average mean Body Gyroscope Jerk Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Body Gyroscope Jerk Magnitude Standard Deviation</td>
+<td>fBodyBodyGyroJerkMag__std</td>
+<td>Average standard deviation Body Body Gyroscope Jerk Magnitude along frequency</td>
+</tr>
+<tr>
+<td>(Frequency) Body Body Gyroscope Jerk Magnitude Mean Frequency</td>
+<td>fBodyBodyGyroJerkMag__meanFreq</td>
+<td>Average mean frequency of Body Body Gyroscope Jerk Magnitude along frequency</td>
+</tr>
+</tbody></table>
+
+<h3>Steps for cleaning data</h3>
+
+<ol>
+<li>Merge X/y data from activity data UCI HAR Dataset</li>
+<li>Replace activity label ids with string name of activity label</li>
+<li>Store transformed data as csv in <code>data/processed data/activity_data.csv</code></li>
+<li>Use stored data in <code>data/processed data/activity_data.csv</code> to aggregate accross features representing mean/standard deviation grouped by subject_id then activity label</li>
+<li>Store summary data in <code>data/processed data/summary_data.csv</code></li>
+</ol>
+
+</body>
+
+</html>
+
