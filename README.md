@@ -3,6 +3,10 @@
 ### Introduction
 This project is intended to clean a [dataset](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip "Dataset provided by UCI") containing recognized human activity data provided by UCI
 
+All data is contained within the `data` folder, and it is expected that the raw UCI data is contained within `data/raw data/UCI HAR Dataset`
+
+The script will merge the 'X' and 'y' data files together and finally produce averages of the mean and standard deviation features available, storing them in a file `data/processed data/summary_data.csv`.
+
 ### Objective
 
 1. Merges the training and the test sets to create one data set.
