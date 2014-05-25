@@ -98,3 +98,21 @@ for(i in 1:length(index$id)){
 close(merged_data_file)
 close()
 for(fh in ls(file_handles)) close(get(envir=file_handles, fh))
+#PART 2: Extract only measurements on mean and standard deviation variables for each feature
+
+activity_data_file <- merged_data_file_path
+
+tidy_data_file_path <- 'data/processed data/summary_data.csv'
+tidy_data_file <- file(tidy_data_file_path, 'w')
+
+activity_data <- read.csv(activity_data_file)
+
+activity_data_headings <- names(activity_data)
+relevant_features <- grep('mean|std', activity_data_headings)
+relevant_data <- activity_data[,c('subject_id',activity_data_headings[relevant_features], 'activity_label')]
+
+tidy_data <- aggregate(.~subject_id+activity_label, relevant_data, mean)
+
+
+write.csv(tidy_data, tidy_data_file, row.names=F)
+close(tidy_data_file)
